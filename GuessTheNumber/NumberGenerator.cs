@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class NumberGenerator
+    internal class NumberGenerator : INumberGenerator
     {
         public int GenerateNumber()
         {

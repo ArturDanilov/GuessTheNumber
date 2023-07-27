@@ -2,8 +2,8 @@
 {
     internal class Game
     {
-        private NumberGenerator numberGenerator;
-        private Logger _logger;
+        private INumberGenerator numberGenerator;
+        private ILogger _logger;
         private int attempts = 3;
 
         public Game(NumberGenerator numberGenerator, Logger logger)

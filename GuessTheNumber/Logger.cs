@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class Logger
+    internal class Logger : ILogger
     {
         public void Try() => Console.WriteLine("\nEnter the number...");
 
