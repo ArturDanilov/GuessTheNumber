@@ -38,7 +38,10 @@
                     i--;
                 }
 
-                if (i == attempts - 1) _logger.Looser();
+                if (i == attempts - 1)
+                {
+                    _logger.Looser();
+                }
             }
         }
     }

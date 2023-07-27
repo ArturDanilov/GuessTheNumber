@@ -9,6 +9,7 @@
             var numberGenerator = new NumberGenerator();
             var logger = new Logger();
             var game = new Game(numberGenerator, logger);
+
             game.TryGame();
         }
     }
