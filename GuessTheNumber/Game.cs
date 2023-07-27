@@ -6,7 +6,7 @@
         private ILogger _logger;
         private int attempts = 3;
 
-        public Game(NumberGenerator numberGenerator, Logger logger)
+        public Game(NumberGenerator numberGenerator, LoggerToConsole logger)
         {
             this.numberGenerator = numberGenerator;
             this._logger = logger;
