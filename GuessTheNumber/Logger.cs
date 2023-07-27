@@ -4,27 +4,31 @@
     {
         public void Try()
         {
-            Console.WriteLine("Enter the number...");
+            Console.WriteLine("\nEnter the number...");
         }
 
         public void Winner()
         {
-            Console.WriteLine("You winn!!!");
+            Console.WriteLine("\nYou winn!!!");
         }
 
         public void Looser()
         {
-            Console.WriteLine("You loose!!!");
+            Console.WriteLine("\nYou loose!!!");
         }
 
         public void NumberGuessed()
         {
-            Console.WriteLine("Number guessed...");
+            Console.WriteLine("\nNumber guessed...");
         }
 
         public void InvalidInput()
         {
-            Console.WriteLine("Invalid input, please enter a number between 1 and 10.");
+            Console.WriteLine("\nInvalid input, please enter a number between 1 and 10.");
+        }
+        public void FalseGuess()
+        {
+            Console.WriteLine("False guess.");
         }
     }
 }

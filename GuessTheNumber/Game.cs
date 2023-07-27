@@ -17,53 +17,29 @@
             int x = numberGenerator.GenerateNumber();
             _logger.NumberGuessed();
 
-            if (x > attempts)
+            for (int i = 0; i < attempts; i++)
             {
                 _logger.Try();
-                var number = Int32.Parse(Console.ReadLine());
-
-                //try 1
-                if (x == number && attempts != 0)
+                if (Int32.TryParse(Console.ReadLine(), out var number))
                 {
-                    _logger.Winner();
-                    attempts = 0;
-                    return;
+                    if (x == number)
+                    {
+                        _logger.Winner();
+                        return;
+                    }
+                    else
+                    {
+                        _logger.FalseGuess();
+                    }
                 }
                 else
                 {
-                    number = OneMoreTry();
+                    _logger.InvalidInput();
+                    i--;
                 }
 
-                //try 2
-                if (x == number && attempts != 0)
-                {
-                    _logger.Winner();
-                }
-                else
-                {
-                    number = OneMoreTry();
-                }
-
-                //try 3
-                if (x == number && attempts > 0)
-                {
-                    _logger.Winner();
-                }
-                else
-                {
-                    attempts--;
-                    _logger.Looser();
-                }
+                if (i == attempts - 1) _logger.Looser();
             }
-        }
-
-        private int OneMoreTry()
-        {
-            int number;
-            attempts--;
-            _logger.Try();
-            number = Int32.Parse(Console.ReadLine());
-            return number;
         }
     }
 }
