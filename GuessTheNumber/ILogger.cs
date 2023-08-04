@@ -2,11 +2,11 @@
 {
     internal interface ILogger
     {
-        void FalseGuess();
+        void FalseGuess(int attepts);
         void InvalidInput();
-        void Looser();
-        void NumberGuessed();
+        void Looser(int attempts);
         void Try();
         void Winner();
+        void RemainingAttempts(int count);
     }
 }

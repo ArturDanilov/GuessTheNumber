@@ -2,45 +2,43 @@
 {
     internal class Game
     {
-        private INumberGenerator numberGenerator;
+        private INumberGenerator _numberGenerator;
         private ILogger _logger;
-        private int attempts = 3;
+        private IUserInput _userInput;
+        private int _attempts = 3;
 
-        public Game(NumberGenerator numberGenerator, LoggerToConsole logger)
+        public Game(INumberGenerator numberGenerator, ILogger logger, IUserInput userInput)
         {
-            this.numberGenerator = numberGenerator;
-            this._logger = logger;
+            _numberGenerator = numberGenerator;
+            _logger = logger;
+            _userInput = userInput;
         }
 
-        public void TryGame()
+        public void Start()
         {
-            int x = numberGenerator.GenerateNumber();
-            _logger.NumberGuessed();
+            int riddledNumber = _numberGenerator.GenerateNumber();
+            int remainingAttempts = _attempts;
 
-            for (int i = 0; i < attempts; i++)
+            for (int i = 0; i < _attempts; i++)
             {
                 _logger.Try();
-                if (Int32.TryParse(Console.ReadLine(), out var number))
+                var attemptedNumber = _userInput.GetAttemptedNumber();
+
+
+                if (riddledNumber == attemptedNumber)
                 {
-                    if (x == number)
-                    {
-                        _logger.Winner();
-                        return;
-                    }
-                    else
-                    {
-                        _logger.FalseGuess();
-                    }
+                    _logger.Winner();
+                    return;
                 }
                 else
                 {
-                    _logger.InvalidInput();
-                    i--;
+                    _logger.FalseGuess(attemptedNumber);
+                    _logger.RemainingAttempts(remainingAttempts -= 1);
                 }
 
-                if (i == attempts - 1)
+                if (i == _attempts - 1)
                 {
-                    _logger.Looser();
+                    _logger.Looser(riddledNumber);
                 }
             }
         }

@@ -3,14 +3,13 @@
     internal class Program
     {
         static void Main(string[] args)
-        {            
-            Console.WriteLine("Welcome to the GuessTheNumber!\n");
-
-            var numberGenerator = new NumberGenerator();
+        {
+            var numberGenerator = new FakeNumberGenerator(5);
             var logger = new LoggerToConsole();
-            var game = new Game(numberGenerator, logger);
+            var userInput = new ConsoleUserInput(logger);
+            var game = new Game(numberGenerator, logger, userInput);
 
-            game.TryGame();
+            game.Start();
         }
     }
 }

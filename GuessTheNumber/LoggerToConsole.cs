@@ -2,16 +2,16 @@
 {
     internal class LoggerToConsole : ILogger
     {
-        public void Try() => Console.WriteLine("\nEnter the number...");
+        public void Try() => Console.Write("\nEnter the number: ");
 
-        public void Winner() => Console.WriteLine("\nYou winn!!!");
+        public void Winner() => Console.WriteLine("\nYou win!");
 
-        public void Looser() => Console.WriteLine("\nYou loose!!!");
-
-        public void NumberGuessed() => Console.WriteLine("\nNumber guessed...");
+        public void Looser(int attempts) => Console.Write("\nYou loose! The hidden number was: " + attempts);
 
         public void InvalidInput() => Console.WriteLine("\nInvalid input, please enter a number between 1 and 10.");
 
-        public void FalseGuess() => Console.WriteLine("False guess.");
+        public void FalseGuess(int attepts) => Console.Write(attepts + " is a false guess. ");
+
+        public void RemainingAttempts(int count) => Console.WriteLine("Remaining attempts " + count);
     }
 }
