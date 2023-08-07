@@ -4,11 +4,11 @@
     {
         private const int MinValue = 1;
         private const int MaxValue = 10;
-        private ILogger _logger;
+        private IUserInteractionService _userInteractionService;
 
-        public ConsoleUserInput(ILogger logger)
+        public ConsoleUserInput(IUserInteractionService logger)
         {
-            _logger = logger;
+            _userInteractionService = logger;
         }
         public int GetAttemptedNumber()
         {
@@ -22,8 +22,26 @@
                     }
                 }
 
-                _logger.InvalidInput();
-                _logger.Try();
+                _userInteractionService.InvalidInput();
+                _userInteractionService.Try();
+            }
+        }
+
+        public int GetNumberOfAttempts()
+        {
+            while(true)
+            {
+                _userInteractionService.OutputMessage("Please, enter the number of attempts:");
+
+                if (Int32.TryParse(Console.ReadLine(), out var numberOfAttempts))
+                {
+                    if (numberOfAttempts >= 1)
+                    {
+                        return numberOfAttempts;
+                    }
+
+                    _userInteractionService.InvalidInput();
+                }
             }
         }
     }

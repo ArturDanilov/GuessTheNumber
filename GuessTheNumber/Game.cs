@@ -3,42 +3,57 @@
     internal class Game
     {
         private INumberGenerator _numberGenerator;
-        private ILogger _logger;
+        private IUserInteractionService _userInteractionService;
         private IUserInput _userInput;
+        private IHintProvider _hintProvider;
         private int _attempts = 3;
 
-        public Game(INumberGenerator numberGenerator, ILogger logger, IUserInput userInput)
+        public Game(INumberGenerator numberGenerator, IUserInteractionService logger, IUserInput userInput, IHintProvider hintProvider)
         {
             _numberGenerator = numberGenerator;
-            _logger = logger;
+            _userInteractionService = logger;
             _userInput = userInput;
+            _hintProvider = hintProvider;
         }
 
         public void Start()
         {
             int riddledNumber = _numberGenerator.GenerateNumber();
-            int remainingAttempts = _attempts;
+
+            string question = _userInteractionService.AskQuestion("Do you want to set the number of attempts? (yes/no)");
+            
+            if (question.ToLower() == "yes")
+            {
+                _attempts = _userInput.GetAttemptedNumber();
+            }
+
+            string answer = _userInteractionService.AskQuestion("Do you want to enable hints? (yes/no)");
+            bool userWantsHints = answer.ToLower() == "yes";
 
             for (int i = 0; i < _attempts; i++)
             {
-                _logger.Try();
+                _userInteractionService.Try();
                 var attemptedNumber = _userInput.GetAttemptedNumber();
-
 
                 if (riddledNumber == attemptedNumber)
                 {
-                    _logger.Winner();
+                    _userInteractionService.Winner();
                     return;
                 }
                 else
                 {
-                    _logger.FalseGuess(attemptedNumber);
-                    _logger.RemainingAttempts(remainingAttempts -= 1);
+                    _userInteractionService.FalseGuess(attemptedNumber);
+                    _userInteractionService.RemainingAttempts(_attempts -= 1);
+
+                    if (userWantsHints == true)
+                    {
+                        _userInteractionService.OutputMessage(_hintProvider.ProvideHint(riddledNumber, attemptedNumber));
+                    }
                 }
 
                 if (i == _attempts - 1)
                 {
-                    _logger.Looser(riddledNumber);
+                    _userInteractionService.Looser(riddledNumber);
                 }
             }
         }

@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class LoggerToConsole : ILogger
+    internal class ConsoleUserInterface : IUserInteractionService
     {
         public void Try() => Console.Write("\nEnter the number: ");
 
@@ -13,5 +13,13 @@
         public void FalseGuess(int attepts) => Console.Write(attepts + " is a false guess. ");
 
         public void RemainingAttempts(int count) => Console.WriteLine("Remaining attempts " + count);
+
+        public string AskQuestion(string question)
+        {
+            Console.WriteLine(question);
+            return Console.ReadLine();
+        }
+
+        public void OutputMessage(string message) => Console.WriteLine(message);
     }
 }

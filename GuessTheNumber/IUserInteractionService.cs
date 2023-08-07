@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal interface ILogger
+    internal interface IUserInteractionService
     {
         void FalseGuess(int attepts);
         void InvalidInput();
@@ -8,5 +8,7 @@
         void Try();
         void Winner();
         void RemainingAttempts(int count);
+        string AskQuestion(string question);
+        void OutputMessage(string message);
     }
 }
