@@ -18,18 +18,23 @@
 
         public void Start()
         {
+            //setting
             int riddledNumber = _numberGenerator.GenerateNumber();
 
             string question = _userInteractionService.AskQuestion("Do you want to set the number of attempts? (yes/no)");
             
             if (question.ToLower() == "yes")
             {
+                _userInteractionService.OutputMessage("Please, enter the number of attempts:");
                 _attempts = _userInput.GetAttemptedNumber();
             }
+
+            int remainingAttempts = _attempts;
 
             string answer = _userInteractionService.AskQuestion("Do you want to enable hints? (yes/no)");
             bool userWantsHints = answer.ToLower() == "yes";
 
+            //control
             for (int i = 0; i < _attempts; i++)
             {
                 _userInteractionService.Try();
@@ -43,7 +48,7 @@
                 else
                 {
                     _userInteractionService.FalseGuess(attemptedNumber);
-                    _userInteractionService.RemainingAttempts(_attempts -= 1);
+                    _userInteractionService.RemainingAttempts(--remainingAttempts);
 
                     if (userWantsHints == true)
                     {

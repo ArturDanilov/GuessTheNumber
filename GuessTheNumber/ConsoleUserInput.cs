@@ -31,8 +31,6 @@
         {
             while(true)
             {
-                _userInteractionService.OutputMessage("Please, enter the number of attempts:");
-
                 if (Int32.TryParse(Console.ReadLine(), out var numberOfAttempts))
                 {
                     if (numberOfAttempts >= 1)
