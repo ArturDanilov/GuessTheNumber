@@ -4,5 +4,6 @@
     {
         int GetAttemptedNumber();
         int GetNumberOfAttempts();
+        bool GetYesOrNoAnswer(string prompt);
     }
 }

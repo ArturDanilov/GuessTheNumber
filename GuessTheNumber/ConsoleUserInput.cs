@@ -29,7 +29,7 @@
 
         public int GetNumberOfAttempts()
         {
-            while(true)
+            while (true)
             {
                 if (Int32.TryParse(Console.ReadLine(), out var numberOfAttempts))
                 {
@@ -39,6 +39,28 @@
                     }
 
                     _userInteractionService.InvalidInput();
+                }
+            }
+        }
+
+        public bool GetYesOrNoAnswer(string prompt)
+        {
+            while (true)
+            {
+                _userInteractionService.OutputMessage(prompt);
+                string response = Console.ReadLine().ToLower();
+
+                if (response == "yes")
+                {
+                    return true;
+                }
+                else if (response == "no")
+                {
+                    return false;
+                }
+                else
+                {
+                    _userInteractionService.OutputMessage("Please answer 'yes' or 'no'.");
                 }
             }
         }

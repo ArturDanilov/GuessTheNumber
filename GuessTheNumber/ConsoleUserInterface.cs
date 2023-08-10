@@ -8,11 +8,11 @@
 
         public void Looser(int attempts) => Console.Write("\nYou loose! The hidden number was: " + attempts);
 
-        public void InvalidInput() => Console.WriteLine("\nInvalid input, please enter a number between 1 and 10.");
+        public void InvalidInput() => Console.Write("\nInvalid input, please enter a number between 1 and 10.\n");
 
         public void FalseGuess(int attepts) => Console.Write(attepts + " is a false guess. ");
 
-        public void RemainingAttempts(int count) => Console.WriteLine("Remaining attempts " + count);
+        public void RemainingAttempts(int count) => Console.Write("Remaining attempts " + count + ".\n");
 
         public string AskQuestion(string question)
         {

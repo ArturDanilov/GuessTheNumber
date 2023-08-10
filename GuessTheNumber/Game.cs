@@ -19,7 +19,7 @@
 
         public void Start()
         {
-            if (_userInteractionService.AskQuestion("Do you want to customize this game? (yes/no) ").ToLower() == "yes")
+            if (_userInput.GetYesOrNoAnswer("Do you want to customize this game? (yes/no) "))
             {
                 ConfigureGameSettings();
             }
@@ -38,7 +38,7 @@
         {
             riddledNumber = _numberGenerator.GenerateNumber();
 
-            if (_userInteractionService.AskQuestion("Do you want to set the number of attempts? (yes/no) ").ToLower() == "yes")
+            if (_userInput.GetYesOrNoAnswer("Do you want to set the number of attempts? (yes/no) "))
             {
                 _userInteractionService.OutputMessage("Please, enter the number of attempts: ");
                 remainingAttempts = _userInput.GetAttemptedNumber();
@@ -48,7 +48,7 @@
                 remainingAttempts = _attempts;
             }
 
-            userWantsHints = _userInteractionService.AskQuestion("Do you want to enable hints? (yes/no) ").ToLower() == "yes";
+            userWantsHints = _userInput.GetYesOrNoAnswer("Do you want to enable hints? (yes/no) ");
         }
 
         private void PlayGame()
@@ -66,12 +66,13 @@
                 else
                 {
                     _userInteractionService.FalseGuess(attemptedNumber);
-                    _userInteractionService.RemainingAttempts(--remainingAttempts);
 
                     if (userWantsHints == true)
                     {
                         _userInteractionService.OutputMessage(_hintProvider.ProvideHint(riddledNumber, attemptedNumber));
                     }
+
+                    _userInteractionService.RemainingAttempts(--remainingAttempts);
                 }
 
                 if (i == _attempts - 1)
