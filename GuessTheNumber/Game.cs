@@ -7,7 +7,8 @@
         private IUserInput _userInput;
         private IHintProvider _hintProvider;
         private int _attempts = 3;
-
+        private int riddledNumber, remainingAttempts;
+        private bool userWantsHints;
         public Game(INumberGenerator numberGenerator, IUserInteractionService logger, IUserInput userInput, IHintProvider hintProvider)
         {
             _numberGenerator = numberGenerator;
@@ -18,24 +19,41 @@
 
         public void Start()
         {
-            //setting
-            int riddledNumber = _numberGenerator.GenerateNumber();
-
-            string question = _userInteractionService.AskQuestion("Do you want to set the number of attempts? (yes/no)");
-            
-            if (question.ToLower() == "yes")
+            if (_userInteractionService.AskQuestion("Do you want to customize this game? (yes/no) ").ToLower() == "yes")
             {
-                _userInteractionService.OutputMessage("Please, enter the number of attempts:");
-                _attempts = _userInput.GetAttemptedNumber();
+                ConfigureGameSettings();
+            }
+            else
+            {
+                riddledNumber = _numberGenerator.GenerateNumber();
+                remainingAttempts = _attempts;
+                userWantsHints = false;
+                _userInteractionService.OutputMessage($"The game is installed with default settings. You have {_attempts} tries");
             }
 
-            int remainingAttempts = _attempts;
+            PlayGame();            
+        }
 
-            string answer = _userInteractionService.AskQuestion("Do you want to enable hints? (yes/no)");
-            bool userWantsHints = answer.ToLower() == "yes";
+        private void ConfigureGameSettings()
+        {
+            riddledNumber = _numberGenerator.GenerateNumber();
 
-            //control
-            for (int i = 0; i < _attempts; i++)
+            if (_userInteractionService.AskQuestion("Do you want to set the number of attempts? (yes/no) ").ToLower() == "yes")
+            {
+                _userInteractionService.OutputMessage("Please, enter the number of attempts: ");
+                remainingAttempts = _userInput.GetAttemptedNumber();
+            }
+            else
+            {
+                remainingAttempts = _attempts;
+            }
+
+            userWantsHints = _userInteractionService.AskQuestion("Do you want to enable hints? (yes/no) ").ToLower() == "yes";
+        }
+
+        private void PlayGame()
+        {
+            for (int i = 0; i < remainingAttempts; i++)
             {
                 _userInteractionService.Try();
                 var attemptedNumber = _userInput.GetAttemptedNumber();

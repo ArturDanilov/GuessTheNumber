@@ -16,10 +16,10 @@
 
         public string AskQuestion(string question)
         {
-            Console.WriteLine(question);
+            Console.Write(question);
             return Console.ReadLine();
         }
 
-        public void OutputMessage(string message) => Console.WriteLine(message);
+        public void OutputMessage(string message) => Console.Write(message);
     }
 }
