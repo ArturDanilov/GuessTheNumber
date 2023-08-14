@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class ConsoleUserInterface : IUserInteractionService
+    internal class ConsoleUserOutput : IUserOutput
     {
         public void Try() => Console.Write("\nEnter the number: ");
 

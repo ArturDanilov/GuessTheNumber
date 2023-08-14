@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal interface IUserInteractionService
+    internal interface IUserOutput
     {
         void FalseGuess(int attepts);
         void InvalidInput();

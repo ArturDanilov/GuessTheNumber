@@ -4,11 +4,11 @@
     {
         private const int MinValue = 1;
         private const int MaxValue = 10;
-        private IUserInteractionService _userInteractionService;
+        private IUserOutput _userInteractionService;
 
-        public ConsoleUserInput(IUserInteractionService logger)
+        public ConsoleUserInput(IUserOutput userOutput)
         {
-            _userInteractionService = logger;
+            _userInteractionService = userOutput;
         }
         public int GetAttemptedNumber()
         {

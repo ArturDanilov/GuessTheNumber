@@ -5,10 +5,10 @@
         static void Main(string[] args)
         {
             var numberGenerator = new NumberGenerator();
-            var logger = new ConsoleUserInterface();
-            var userInput = new ConsoleUserInput(logger);
+            var userOutput = new ConsoleUserOutput();
+            var userInput = new ConsoleUserInput(userOutput);
             var hintProvider = new HintProvider();
-            var game = new Game(numberGenerator, logger, userInput, hintProvider);
+            var game = new Game(numberGenerator, userOutput, userInput, hintProvider);
 
             game.Start();
         }
