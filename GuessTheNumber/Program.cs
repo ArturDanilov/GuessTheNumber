@@ -10,9 +10,9 @@
 
             GameConfigurationManager gameConfigurationManager = new GameConfigurationManager(numberGenerator, userInput);
             GameSettings settings = gameConfigurationManager.ConfigureGame();
-            GameLogic gameLogic = new GameLogic(settings, userInput, hintProvider);
+            GameplayController game = new GameplayController(settings, userInput, hintProvider);
 
-            gameLogic.PlayGame();
+            game.PlayGame();
         }
     }
 }

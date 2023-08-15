@@ -1,12 +1,12 @@
 ﻿namespace GuessTheNumber
 {
-    internal class GameLogic
+    internal class GameplayController
     {
         private IUserInteractionService _userInteractionService;
         private IHintProvider _hintProvider;
         private GameSettings _settings;
 
-        public GameLogic(GameSettings settings, IUserInteractionService userInput, IHintProvider hintProvider)
+        public GameplayController(GameSettings settings, IUserInteractionService userInput, IHintProvider hintProvider)
         {
             _settings = settings;
             _userInteractionService = userInput;
