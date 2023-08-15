@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class ConsoleUserInput : IUserInput
+    internal class ConsoleUserInput : IUserInteractionService
     {
         private IUserOutput _userInteractionService;
         private const int MinValue = 1;

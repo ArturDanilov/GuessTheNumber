@@ -9,6 +9,7 @@
         private int _riddledNumber;
         private int _remainingAttempts;
         private bool _userWantsHints;
+
         public Game(INumberGenerator numberGenerator, IUserInteractionService userInput, IHintProvider hintProvider)
         {
             _numberGenerator = numberGenerator;
