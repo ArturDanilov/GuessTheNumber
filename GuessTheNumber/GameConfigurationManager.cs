@@ -3,30 +3,43 @@
     internal class GameConfigurationManager
     {
         private INumberGenerator _numberGenerator;
-        private IUserInteractionService _userInput;
-
-        public int RiddledNumber { get; private set; }
-        public int RemainingAttempts { get; private set; }
-        public bool UserWantsHints { get; private set; }
+        private IUserInteractionService _userInteractionService;
+        private int _attempts = 3;
+        private int _riddledNumber;
+        private int _remainingAttempts;
+        private bool _userWantsHints;
 
         public GameConfigurationManager(INumberGenerator numberGenerator, IUserInteractionService userInput)
         {
             _numberGenerator = numberGenerator;
-            _userInput = userInput;
+            _userInteractionService = userInput;
         }
 
-        public void DefaultConfiguration()
+        public GameSettings ConfigureGame()
         {
-            RiddledNumber = _numberGenerator.GenerateNumber();
-            RemainingAttempts = 3;
-            UserWantsHints = false;
-        }
 
-        public void UserConfiguration()
-        {
-            RiddledNumber = _numberGenerator.GenerateNumber();
-            RemainingAttempts = _userInput.GetNumberOfAttempts();
-            UserWantsHints = _userInput.GetYesOrNoAnswer("Do you want to enable hints? (yes/no) ");
+            if (_userInteractionService.GetYesOrNoAnswer("Do you want to customize this game? (yes/no) "))
+            {
+                _riddledNumber = _numberGenerator.GenerateNumber();
+                _userInteractionService.OutputMessage("Please, enter the number of attempts: ");
+                _remainingAttempts = _userInteractionService.GetAttemptedNumber();
+                _userWantsHints = _userInteractionService.GetYesOrNoAnswer("Do you want to enable hints? (yes/no) ");
+            }
+            else
+            {
+                _riddledNumber = _numberGenerator.GenerateNumber();
+                _remainingAttempts = _attempts;
+                _userWantsHints = false;
+
+                _userInteractionService.OutputMessage($"The game is installed with default settings. You have {_attempts} tries");
+            }
+
+            return new GameSettings
+            {
+                RiddledNumber = _riddledNumber,
+                RemainingAttempts = _remainingAttempts,
+                WantsHints = _userWantsHints
+            };
         }
     }
 }

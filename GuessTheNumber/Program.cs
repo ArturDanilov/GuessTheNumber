@@ -4,13 +4,15 @@
     {
         static void Main(string[] args)
         {
-            var numberGenerator = new NumberGenerator();
-            var userOutput = new ConsoleUserOutput();
-            var userInput = new ConsoleUserInput(userOutput);
-            var hintProvider = new HintProvider();
-            var game = new Game(numberGenerator, userOutput, userInput, hintProvider);
+            INumberGenerator numberGenerator = new NumberGenerator();
+            IUserInteractionService userInput = new ConsoleUserInput();
+            IHintProvider hintProvider = new HintProvider();
 
-            game.Start();
+            GameConfigurationManager gameConfigurationManager = new GameConfigurationManager(numberGenerator, userInput);
+            GameSettings settings = gameConfigurationManager.ConfigureGame();
+            GameLogic gameLogic = new GameLogic(settings, userInput, hintProvider);
+
+            gameLogic.PlayGame();
         }
     }
 }
