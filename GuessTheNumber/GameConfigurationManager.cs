@@ -3,13 +3,13 @@
     internal class GameConfigurationManager
     {
         private INumberGenerator _numberGenerator;
-        private IUserInput _userInput;
+        private IUserInteractionService _userInput;
 
         public int RiddledNumber { get; private set; }
         public int RemainingAttempts { get; private set; }
         public bool UserWantsHints { get; private set; }
 
-        public GameConfigurationManager(INumberGenerator numberGenerator, IUserInput userInput)
+        public GameConfigurationManager(INumberGenerator numberGenerator, IUserInteractionService userInput)
         {
             _numberGenerator = numberGenerator;
             _userInput = userInput;

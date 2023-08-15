@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal interface IUserInput
+    internal interface IUserInput : IUserOutput
     {
         int GetAttemptedNumber();
         int GetNumberOfAttempts();
