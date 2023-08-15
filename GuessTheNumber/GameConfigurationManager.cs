@@ -5,10 +5,6 @@
         private INumberGenerator _numberGenerator;
         private IUserInteractionService _userInteractionService;
 
-        private int _defaultAttempts = 3;
-        private int _riddledNumber;
-        private int _remainingAttempts;
-        private bool _userWantsHints;
 
         public GameConfigurationManager(INumberGenerator numberGenerator, IUserInteractionService userInput)
         {
@@ -16,9 +12,12 @@
             _userInteractionService = userInput;
         }
 
-        public GameSettings ConfigureGame()
+        public PrepareConfiguration ConfigureGame()
         {
-            _riddledNumber = _numberGenerator.GenerateNumber();
+            int _riddledNumber = _numberGenerator.GenerateNumber(); 
+            int _defaultAttempts = 3;
+            int _remainingAttempts;
+            bool _userWantsHints;
 
             if (_userInteractionService.GetYesOrNoAnswer("Do you want to customize this game? (yes/no) "))
             {                
@@ -34,7 +33,7 @@
                 _userInteractionService.OutputMessage($"The game is installed with default settings. You have {_defaultAttempts} tries");
             }
 
-            return new GameSettings
+            return new PrepareConfiguration
             {
                 RiddledNumber = _riddledNumber,
                 RemainingAttempts = _remainingAttempts,

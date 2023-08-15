@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class GameSettings
+    internal class PrepareConfiguration
     {
         public int RiddledNumber { get; set; }
         public int RemainingAttempts { get; set; }

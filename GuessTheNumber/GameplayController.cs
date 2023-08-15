@@ -4,23 +4,23 @@
     {
         private IUserInteractionService _userInteractionService;
         private IHintProvider _hintProvider;
-        private GameSettings _settings;
+        private PrepareConfiguration _configuration;
 
-        public GameplayController(GameSettings settings, IUserInteractionService userInput, IHintProvider hintProvider)
+        public GameplayController(PrepareConfiguration configuration, IUserInteractionService userInput, IHintProvider hintProvider)
         {
-            _settings = settings;
+            _configuration = configuration;
             _userInteractionService = userInput;
             _hintProvider = hintProvider;
         }
 
         public void PlayGame()
         {
-            while (_settings.RemainingAttempts > 0)
+            while (_configuration.RemainingAttempts > 0)
             {
                 _userInteractionService.Try();
                 var attemptedNumber = _userInteractionService.GetAttemptedNumber();
 
-                if (_settings.RiddledNumber == attemptedNumber)
+                if (_configuration.RiddledNumber == attemptedNumber)
                 {
                     _userInteractionService.Winner();
                     return;
@@ -29,18 +29,18 @@
                 {
                     _userInteractionService.FalseGuess(attemptedNumber);
 
-                    if (_settings.WantsHints)
+                    if (_configuration.WantsHints)
                     {
-                        _userInteractionService.OutputMessage(_hintProvider.ProvideHint(_settings.RiddledNumber, attemptedNumber));
+                        _userInteractionService.OutputMessage(_hintProvider.ProvideHint(_configuration.RiddledNumber, attemptedNumber));
                     }
 
-                    _settings.RemainingAttempts--;
-                    _userInteractionService.RemainingAttempts(_settings.RemainingAttempts);
+                    _configuration.RemainingAttempts--;
+                    _userInteractionService.RemainingAttempts(_configuration.RemainingAttempts);
                 }
 
-                if (_settings.RemainingAttempts == 0)
+                if (_configuration.RemainingAttempts == 0)
                 {
-                    _userInteractionService.Looser(_settings.RiddledNumber);
+                    _userInteractionService.Looser(_configuration.RiddledNumber);
                 }
             }
         }
