@@ -6,17 +6,17 @@
         {
             //Dependency initialization
             INumberGenerator numberGenerator = new NumberGenerator();
-            IUserInteractionService userInput = new ConsoleUserInput();
+            IUserInteractionService userInteractionService = new ConsoleUserInteractionService();
             IHintProvider hintProvider = new HintProvider();
 
             //game customization
-            GameConfigurationManager gameConfigurationManager = new GameConfigurationManager(numberGenerator, userInput);
-            PrepareConfiguration configuration = gameConfigurationManager.ConfigureGame();
+            GameConfigurationManager gameConfigurationManager = new GameConfigurationManager(userInteractionService);
+            GameConfiguration configuration = gameConfigurationManager.ConfigureGame();
 
             //Controlling the game logic
-            GameplayController game = new GameplayController(configuration, userInput, hintProvider);
-
-            game.PlayGame();
+            Game game = new Game(userInteractionService, hintProvider);
+            
+            game.Start(configuration, numberGenerator);
         }
     }
 }

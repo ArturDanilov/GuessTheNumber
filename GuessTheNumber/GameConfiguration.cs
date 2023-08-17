@@ -1,9 +1,12 @@
 ﻿namespace GuessTheNumber
 {
-    internal class PrepareConfiguration
+    internal class GameConfiguration
     {
-        public int RiddledNumber { get; set; }
+
         public int RemainingAttempts { get; set; }
+
         public bool WantsHints { get; set; }
+
+        public bool TrackStatistics { get; set; }
     }
 }
