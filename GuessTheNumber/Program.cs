@@ -14,9 +14,9 @@
             GameConfiguration configuration = gameConfigurationManager.ConfigureGame();
 
             //Controlling the game logic
-            Game game = new Game(userInteractionService, hintProvider);
+            Game game = new Game(userInteractionService, hintProvider, numberGenerator);
             
-            game.Start(configuration, numberGenerator);
+            game.Start(configuration);
         }
     }
 }

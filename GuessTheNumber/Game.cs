@@ -4,14 +4,16 @@
     {
         private IUserInteractionService _userInteractionService;
         private IHintProvider _hintProvider;
+        private INumberGenerator _numberGenerator;
 
-        public Game(IUserInteractionService userInteractionService, IHintProvider hintProvider)
+        public Game(IUserInteractionService userInteractionService, IHintProvider hintProvider, INumberGenerator numberGenerator)
         {
             _userInteractionService = userInteractionService;
             _hintProvider = hintProvider;
+            _numberGenerator = numberGenerator;
         }
 
-        public void Start(GameConfiguration configuration, INumberGenerator _numberGenerator)
+        public void Start(GameConfiguration configuration)
         {
             int _riddledNumber = _numberGenerator.GenerateNumber();
 
