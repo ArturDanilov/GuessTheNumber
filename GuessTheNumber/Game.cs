@@ -25,6 +25,12 @@
                 if (_riddledNumber == attemptedNumber)
                 {
                     _userInteractionService.Winner();
+
+                    if (configuration.TrackStatistics)
+                    {
+                        _userInteractionService.OutputMessage("\nRecorded in statistics!");
+                    }
+
                     return;
                 }
                 else
