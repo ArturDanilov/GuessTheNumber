@@ -43,6 +43,11 @@
                 if (configuration.RemainingAttempts == 0)
                 {
                     _userInteractionService.Looser(_riddledNumber);
+                    
+                    if (configuration.TrackStatistics)
+                    {
+                        _userInteractionService.OutputMessage("\nRecorded in statistics!");
+                    }
                 }
             }
         }
