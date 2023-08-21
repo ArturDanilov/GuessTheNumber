@@ -15,8 +15,19 @@
 
             //Controlling the game logic
             Game game = new Game(userInteractionService, hintProvider, numberGenerator);
-            
-            game.Start(configuration);
+                        
+            var gameResult = game.Run(configuration);
+
+            //output statistics result
+            if (configuration.TrackStatistics)
+            {
+                Console.WriteLine("\n\n---- Game Statistics ----");
+                Console.WriteLine($"Game Won: {gameResult.GameWon}");
+                Console.WriteLine($"Total Attempts: {gameResult.TotalAttempts}");
+                Console.WriteLine($"Attempts Taken: {gameResult.AttemptsTaken}");
+                Console.WriteLine($"Riddled Number: {gameResult.RiddledNumber}");
+                Console.WriteLine("-------------------------");
+            }
         }
     }
 }

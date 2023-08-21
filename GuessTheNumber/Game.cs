@@ -13,9 +13,12 @@
             _numberGenerator = numberGenerator;
         }
 
-        public void Start(GameConfiguration configuration)
+        public GameResult Run(GameConfiguration configuration)
         {
             int _riddledNumber = _numberGenerator.GenerateNumber();
+
+            int totalAttempts = configuration.RemainingAttempts;
+            bool gameWon = false;
 
             while (configuration.RemainingAttempts > 0)
             {
@@ -25,13 +28,10 @@
                 if (_riddledNumber == attemptedNumber)
                 {
                     _userInteractionService.Winner();
+                    configuration.RemainingAttempts--;
+                    gameWon = true;
 
-                    if (configuration.TrackStatistics)
-                    {
-                        _userInteractionService.OutputMessage("\nRecorded in statistics!");
-                    }
-
-                    return;
+                    break;
                 }
                 else
                 {
@@ -45,17 +45,22 @@
                     configuration.RemainingAttempts--;
                     _userInteractionService.RemainingAttempts(configuration.RemainingAttempts);
                 }
-
-                if (configuration.RemainingAttempts == 0)
-                {
-                    _userInteractionService.Looser(_riddledNumber);
-                    
-                    if (configuration.TrackStatistics)
-                    {
-                        _userInteractionService.OutputMessage("\nRecorded in statistics!");
-                    }
-                }
             }
+
+            if (!gameWon)
+            {
+                _userInteractionService.Looser(_riddledNumber);
+            }
+
+            GameResult gameResult = new()
+            {
+                GameWon = gameWon,
+                TotalAttempts = totalAttempts,
+                AttemptsTaken = totalAttempts - configuration.RemainingAttempts,
+                RiddledNumber = _riddledNumber,
+            };
+
+            return gameResult;
         }
     }
 }

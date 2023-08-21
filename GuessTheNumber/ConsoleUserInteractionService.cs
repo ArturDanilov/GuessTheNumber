@@ -22,6 +22,7 @@
             }
         }
 
+        //TODO Delete double method
         public int GetNumberOfAttempts()
         {
             while (true)
@@ -67,7 +68,7 @@
 
         public void Try() => Console.Write("\nEnter the number: ");
 
-        public void Winner() => Console.WriteLine("\nYou win!");
+        public void Winner() => Console.Write("\nYou win!");
 
         public void Looser(int attempts) => Console.Write("\nYou loose! The hidden number was: " + attempts);
 
