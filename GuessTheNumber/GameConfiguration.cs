@@ -2,7 +2,7 @@
 {
     internal class GameConfiguration
     {
-        public int RemainingAttempts { get; set; }
+        public int AttemptsCount { get; set; }
 
         public bool WantsHints { get; set; }
 

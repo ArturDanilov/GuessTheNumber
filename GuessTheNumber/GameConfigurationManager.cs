@@ -33,7 +33,7 @@
 
             return new GameConfiguration
             {
-                RemainingAttempts = _remainingAttempts,
+                AttemptsCount = _remainingAttempts,
                 WantsHints = _userWantsHints,
                 TrackStatistics = _userWantsStatistic
             };
