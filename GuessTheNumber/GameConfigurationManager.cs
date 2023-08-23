@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber
 {
-    internal class GameConfigurationManager
+    internal class GameConfigurationManager //TODO Manager??
     {
         private IUserInteractionService _userInteractionService;
 
