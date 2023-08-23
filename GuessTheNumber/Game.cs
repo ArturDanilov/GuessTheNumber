@@ -15,17 +15,19 @@
 
         public GameResult Run(GameConfiguration configuration)
         {
-            int _riddledNumber = _numberGenerator.GenerateNumber();
+            DateTime date = DateTime.UtcNow;
+            bool gameWon = false;
             int totalAttempts = configuration.AttemptsCount;
             int remainingAttempts = configuration.AttemptsCount;
-            bool gameWon = false;
+            int riddledNumber = _numberGenerator.GenerateNumber();
+            bool hintsEnabled = configuration.WantsHints;
 
             while (remainingAttempts > 0)
             {
                 _userInteractionService.Try();
                 var attemptedNumber = _userInteractionService.GetAttemptedNumber();
 
-                if (_riddledNumber == attemptedNumber)
+                if (riddledNumber == attemptedNumber)
                 {
                     remainingAttempts--;
                     gameWon = true;
@@ -38,7 +40,7 @@
 
                     if (configuration.WantsHints)
                     {
-                        _userInteractionService.OutputMessage(_hintProvider.ProvideHint(_riddledNumber, attemptedNumber));
+                        _userInteractionService.OutputMessage(_hintProvider.ProvideHint(riddledNumber, attemptedNumber));
                     }
 
                     remainingAttempts--;
@@ -52,15 +54,17 @@
             }
             else
             {
-                _userInteractionService.Looser(_riddledNumber);
+                _userInteractionService.Looser(riddledNumber);
             }
 
             return new()
             {
+                GameDate = date,
                 GameWon = gameWon,
                 TotalAttempts = totalAttempts,
                 AttemptsTaken = totalAttempts - remainingAttempts,
-                RiddledNumber = _riddledNumber,
+                RiddledNumber = riddledNumber,
+                HintsEnabled = hintsEnabled
             };
         }
     }
