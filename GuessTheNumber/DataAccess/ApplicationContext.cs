@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GuessTheNumber.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuessTheNumber.Database
 {
     internal class ApplicationContext : DbContext
     {
-        public DbSet<GameResult> GameResults { get; set; }
+        public DbSet<GameResultEntity> GameResults { get; set; }
 
         public ApplicationContext() => Database.EnsureCreated();
 

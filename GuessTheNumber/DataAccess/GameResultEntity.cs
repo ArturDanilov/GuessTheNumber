@@ -1,6 +1,6 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.DataAccess
 {
-    internal class GameResult
+    internal class GameResultEntity
     {
         public int Id { get; set; }
 
@@ -13,5 +13,7 @@
         public int AttemptsTaken { get; set; }
 
         public int RiddledNumber { get; set; }
+
+        public bool HintsEnabled { get; set; }
     }
 }

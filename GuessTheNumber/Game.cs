@@ -63,8 +63,7 @@
                 GameWon = gameWon,
                 TotalAttempts = totalAttempts,
                 AttemptsTaken = totalAttempts - remainingAttempts,
-                RiddledNumber = riddledNumber,
-                HintsEnabled = hintsEnabled
+                RiddledNumber = riddledNumber
             };
         }
     }
