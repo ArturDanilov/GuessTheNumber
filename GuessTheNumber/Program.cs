@@ -29,8 +29,7 @@ namespace GuessTheNumber
                     db.SaveChanges();
                     Console.WriteLine("\nThe result of the game is saved in the database");
                 }
-            }
-            
+            }            
         }
     }
 }
