@@ -20,7 +20,7 @@ namespace GuessTheNumber
                         
             var gameResult = game.Run(configuration);
 
-            //output statistics result
+            //save statistics
             if (configuration.TrackStatistics)
             {
                 using (ApplicationContext db = new ApplicationContext())
