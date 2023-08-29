@@ -19,7 +19,7 @@ namespace GuessTheNumber
             _dbContext = dbContext;
         }
 
-        //SRP
+        //SRP Lets go
         static void Main(string[] args)
         {
             //Building Dependencies
