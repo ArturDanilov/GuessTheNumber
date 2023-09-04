@@ -1,6 +1,6 @@
 ﻿namespace GuessTheNumber.DataAccess
 {
-    internal class GameResultEntity
+    public class GameResultEntity
     {
         public int Id { get; set; }
 

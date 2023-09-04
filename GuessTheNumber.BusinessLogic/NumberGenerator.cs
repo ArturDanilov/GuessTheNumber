@@ -1,6 +1,6 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
-    internal class NumberGenerator : INumberGenerator
+    public class NumberGenerator : INumberGenerator
     {
         public int GenerateNumber()
         {

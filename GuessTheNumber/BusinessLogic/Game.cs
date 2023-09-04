@@ -1,4 +1,4 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
     internal class Game
     {
@@ -15,12 +15,10 @@
 
         public GameResult Run(GameConfiguration configuration)
         {
-            DateTime date = DateTime.UtcNow;
             bool gameWon = false;
             int totalAttempts = configuration.AttemptsCount;
             int remainingAttempts = configuration.AttemptsCount;
             int riddledNumber = _numberGenerator.GenerateNumber();
-            bool hintsEnabled = configuration.WantsHints;
 
             while (remainingAttempts > 0)
             {
@@ -38,7 +36,7 @@
                 {
                     _userInteractionService.FalseGuess(attemptedNumber);
 
-                    if (configuration.WantsHints)
+                    if (configuration.HintsEnabled)
                     {
                         _userInteractionService.OutputMessage(_hintProvider.ProvideHint(riddledNumber, attemptedNumber));
                     }
@@ -59,7 +57,6 @@
 
             return new()
             {
-                GameDate = date,
                 GameWon = gameWon,
                 TotalAttempts = totalAttempts,
                 AttemptsTaken = totalAttempts - remainingAttempts,

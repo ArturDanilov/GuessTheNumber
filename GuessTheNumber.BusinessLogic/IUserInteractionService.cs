@@ -1,9 +1,8 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
-    internal interface IUserInteractionService
+    public interface IUserInteractionService
     {
         int GetAttemptedNumber();
-        int GetNumberOfAttempts();
         bool GetYesOrNoAnswer(string prompt);
         void FalseGuess(int attepts);
         void InvalidInput();

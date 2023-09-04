@@ -1,4 +1,4 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
     public interface IHintProvider
     {

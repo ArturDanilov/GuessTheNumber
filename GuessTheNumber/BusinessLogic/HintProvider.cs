@@ -1,4 +1,4 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
     internal class HintProvider : IHintProvider
     {

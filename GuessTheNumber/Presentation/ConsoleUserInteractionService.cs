@@ -1,4 +1,6 @@
-﻿namespace GuessTheNumber
+﻿using GuessTheNumber.BusinessLogic;
+
+namespace GuessTheNumber.Presentation
 {
     internal class ConsoleUserInteractionService : IUserInteractionService
     {
@@ -9,7 +11,7 @@
         {
             while (true)
             {
-                if (Int32.TryParse(Console.ReadLine(), out var attemptedNumber))
+                if (int.TryParse(Console.ReadLine(), out var attemptedNumber))
                 {
                     if (attemptedNumber >= MinValue && attemptedNumber <= MaxValue)
                     {
@@ -19,23 +21,6 @@
 
                 InvalidInput();
                 Try();
-            }
-        }
-
-        //TODO Delete double method
-        public int GetNumberOfAttempts()
-        {
-            while (true)
-            {
-                if (Int32.TryParse(Console.ReadLine(), out var numberOfAttempts))
-                {
-                    if (numberOfAttempts >= 1)
-                    {
-                        return numberOfAttempts;
-                    }
-
-                    InvalidInput();
-                }
             }
         }
 
@@ -59,11 +44,6 @@
                     OutputMessage("Please answer 'yes' or 'no'.");
                 }
             }
-        }
-        public string AskQuestion(string question)
-        {
-            Console.Write(question);
-            return Console.ReadLine();
         }
 
         public void Try() => Console.Write("\nEnter the number: ");

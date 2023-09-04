@@ -1,6 +1,6 @@
-﻿namespace GuessTheNumber
+﻿namespace GuessTheNumber.BusinessLogic
 {
-    internal class GameConfigurationManager //TODO Manager??
+    public class GameConfigurationManager //TODO Manager??
     {
         private IUserInteractionService _userInteractionService;
 
