@@ -3,6 +3,9 @@
     public interface IUserInteractionService
     {
         int GetAttemptedNumber();
+        string Read();
+        string GetNickname();
+        string GetName();
         bool GetYesOrNoAnswer(string prompt);
         void FalseGuess(int attepts);
         void InvalidInput();
@@ -11,7 +14,5 @@
         void Winner();
         void RemainingAttempts(int count);
         void OutputMessage(string message);
-        string GetNickname();
-        string GetName();
     }
 }

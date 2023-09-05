@@ -11,7 +11,7 @@ namespace GuessTheNumber.Console
         {
             while (true)
             {
-                if (Int32.TryParse(System.Console.ReadLine(), out var attemptedNumber))
+                if (Int32.TryParse(Read(), out var attemptedNumber))
                 {
                     if (attemptedNumber >= MinValue && attemptedNumber <= MaxValue)
                     {
@@ -29,7 +29,7 @@ namespace GuessTheNumber.Console
             while (true)
             {
                 OutputMessage(prompt);
-                string response = System.Console.ReadLine().ToLower();
+                string response = Read().ToLower();
 
                 if (response == "yes")
                 {
@@ -46,20 +46,8 @@ namespace GuessTheNumber.Console
             }
         }
 
-        public void Try() => System.Console.Write("\nEnter the number: ");
-
-        public void Winner() => System.Console.Write("\nYou win!");
-
-        public void Looser(int attempts) => System.Console.Write("\nYou loose! The hidden number was: " + attempts);
-
-        public void InvalidInput() => System.Console.Write("Invalid input, please enter a number between 1 and 10.");
-
-        public void FalseGuess(int attepts) => System.Console.Write(attepts + " is a false guess. ");
-
-        public void RemainingAttempts(int count) => System.Console.Write("Remaining attempts " + count + ".");
-
-        public void OutputMessage(string message) => System.Console.Write(message);
-
+        public string Read() => System.Console.ReadLine();
+        
         public string GetNickname()
         {
             while (true)
@@ -86,5 +74,20 @@ namespace GuessTheNumber.Console
                 }
             }
         }
+
+        public void Try() => System.Console.Write("\nEnter the number: ");
+
+        public void Winner() => System.Console.Write("\nYou win!");
+
+        public void Looser(int attempts) => System.Console.Write("\nYou loose! The hidden number was: " + attempts);
+
+        public void InvalidInput() => System.Console.Write("Invalid input, please enter a number between 1 and 10.");
+
+        public void FalseGuess(int attepts) => System.Console.Write(attepts + " is a false guess. ");
+
+        public void RemainingAttempts(int count) => System.Console.Write("Remaining attempts " + count + ".");
+
+        public void OutputMessage(string message) => System.Console.Write(message);
+
     }
 }
