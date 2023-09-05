@@ -42,14 +42,9 @@ namespace GuessTheNumber.Console
                 }
                 else
                 {
-                    OutputMessage("Please answer 'yes' or 'no'.");
+                    OutputMessage("Please answer 'yes' or 'no'. ");
                 }
             }
-        }
-        public string AskQuestion(string question)
-        {
-            System.Console.Write(question);
-            return System.Console.ReadLine();
         }
 
         public void Try() => System.Console.Write("\nEnter the number: ");
@@ -58,12 +53,39 @@ namespace GuessTheNumber.Console
 
         public void Looser(int attempts) => System.Console.Write("\nYou loose! The hidden number was: " + attempts);
 
-        public void InvalidInput() => System.Console.Write("\nInvalid input, please enter a number between 1 and 10.\n");
+        public void InvalidInput() => System.Console.Write("Invalid input, please enter a number between 1 and 10.");
 
         public void FalseGuess(int attepts) => System.Console.Write(attepts + " is a false guess. ");
 
-        public void RemainingAttempts(int count) => System.Console.Write("Remaining attempts " + count + ".\n");
+        public void RemainingAttempts(int count) => System.Console.Write("Remaining attempts " + count + ".");
 
         public void OutputMessage(string message) => System.Console.Write(message);
+
+        public string GetNickname()
+        {
+            while (true)
+            {
+                OutputMessage("Please enter your nickname: ");
+                string nickname = System.Console.ReadLine();
+
+                if (!string.IsNullOrEmpty(nickname))
+                {
+                    return nickname;
+                }
+            }
+        }
+        public string GetName()
+        {
+            while (true)
+            {
+                OutputMessage("Please enter your name: ");
+                string name = System.Console.ReadLine();
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    return name;
+                }
+            }
+        }
     }
 }

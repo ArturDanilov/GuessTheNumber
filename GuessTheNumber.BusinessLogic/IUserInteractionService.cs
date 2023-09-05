@@ -10,7 +10,8 @@
         void Try();
         void Winner();
         void RemainingAttempts(int count);
-        string AskQuestion(string question);
         void OutputMessage(string message);
+        string GetNickname();
+        string GetName();
     }
 }
