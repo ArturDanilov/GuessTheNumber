@@ -53,7 +53,7 @@ namespace GuessTheNumber.Console
             while (true)
             {
                 OutputMessage("Please enter your nickname: ");
-                string nickname = System.Console.ReadLine();
+                string nickname = Read();
 
                 if (!string.IsNullOrEmpty(nickname))
                 {
@@ -66,7 +66,7 @@ namespace GuessTheNumber.Console
             while (true)
             {
                 OutputMessage("Please enter your name: ");
-                string name = System.Console.ReadLine();
+                string name = Read();
 
                 if (!string.IsNullOrEmpty(name))
                 {

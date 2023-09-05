@@ -47,7 +47,7 @@ namespace GuessTheNumber.Console
                 _userInteractionService.OutputMessage($"Welcome back, {user.Nickname}! ");
             }
 
-            var gameConfigurationManager = new GameConfigurationManager(_userInteractionService);
+            var gameConfigurationManager = new GameConfigurationServis(_userInteractionService);
             var configuration = gameConfigurationManager.ConfigureGame();
 
             var game = new Game(_userInteractionService, _hintProvider, _numberGenerator);

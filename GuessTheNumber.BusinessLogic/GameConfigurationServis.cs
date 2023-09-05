@@ -1,10 +1,10 @@
 ﻿namespace GuessTheNumber.BusinessLogic
 {
-    public class GameConfigurationManager //TODO Manager??
+    public class GameConfigurationServis
     {
         private IUserInteractionService _userInteractionService;
 
-        public GameConfigurationManager(IUserInteractionService userInput)
+        public GameConfigurationServis(IUserInteractionService userInput)
         {
             _userInteractionService = userInput;
         }
