@@ -1,6 +1,5 @@
 ﻿using GuessTheNumber.BusinessLogic;
 using GuessTheNumber.DataAccess;
-using Microsoft.IdentityModel.Tokens;
 
 namespace GuessTheNumber.Console
 {
@@ -33,15 +32,13 @@ namespace GuessTheNumber.Console
             await program.RunGameAsync();
         }
 
-        // void => Task
-        // object => Task<object>
         public async Task RunGameAsync()
         {
             string nickname = _userInteractionService.GetNickname();
             UserEntity user = await _authentication.CheckUserAsync(nickname);
 
             if (user == null)
-            {                
+            {
                 string name = _userInteractionService.GetName();
                 user = await _authentication.CreateUserAsync(nickname, name);
             }

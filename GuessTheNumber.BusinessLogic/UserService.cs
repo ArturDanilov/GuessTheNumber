@@ -12,10 +12,7 @@ namespace GuessTheNumber.BusinessLogic
             _dbContext = dbContext;
         }
 
-        public async Task<UserEntity> CheckUserAsync(string nickname)
-        {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.Nickname == nickname);
-        }
+        public async Task<UserEntity> CheckUserAsync(string nickname) => await _dbContext.Users.FirstOrDefaultAsync(x => x.Nickname == nickname);
 
         public async Task<UserEntity> CreateUserAsync(string nickname, string name)
         {

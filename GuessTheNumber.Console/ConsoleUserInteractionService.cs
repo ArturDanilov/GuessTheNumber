@@ -1,5 +1,4 @@
-﻿using System;
-using GuessTheNumber.BusinessLogic;
+﻿using GuessTheNumber.BusinessLogic;
 
 namespace GuessTheNumber.Console
 {
