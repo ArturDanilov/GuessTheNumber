@@ -1,5 +1,5 @@
 ﻿using GuessTheNumber.BusinessLogic;
-using GuessTheNumber.DataAccess;
+using GuessTheNumber.DataAccess; //remuve
 
 namespace GuessTheNumber.Console
 {
@@ -44,7 +44,7 @@ namespace GuessTheNumber.Console
             }
             else
             {
-                _userInteractionService.OutputMessage($"Welcome back, {user.Nickname}! ");
+                _userInteractionService.OutputMessage($"Welcome back, {user.Name}! ");
             }
 
             var gameConfigurationManager = new GameConfigurationServis(_userInteractionService);
@@ -55,6 +55,8 @@ namespace GuessTheNumber.Console
 
             if (configuration.TrackStatistics)
             {
+                //add service for new staticstics 
+                //trans to BusinessLogic
                 var gameResultEntity = new GameResultEntity()
                 {
                     GameDate = DateTimeOffset.UtcNow,
