@@ -56,7 +56,7 @@ namespace GuessTheNumber.Console
             if (configuration.TrackStatistics)
             {
                 //add service for new staticstics 
-                //trans to BusinessLogic
+                //trans to BusinessLogic 
                 var gameResultEntity = new GameResultEntity()
                 {
                     GameDate = DateTimeOffset.UtcNow,
