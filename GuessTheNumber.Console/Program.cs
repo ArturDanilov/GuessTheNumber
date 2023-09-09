@@ -1,5 +1,5 @@
 ﻿using GuessTheNumber.BusinessLogic;
-using GuessTheNumber.DataAccess; //remuve
+using GuessTheNumber.DataAccess; //remove
 
 namespace GuessTheNumber.Console
 {
@@ -10,14 +10,22 @@ namespace GuessTheNumber.Console
         private readonly IHintProvider _hintProvider;
         private readonly ApplicationContext _dbContext;
         private readonly IUserService _authentication;
+        private readonly IStatisticsService _statisticsService;
 
-        public Program(INumberGenerator numberGenerator, IUserInteractionService userInteractionService, IHintProvider hintProvider, ApplicationContext dbContext, IUserService authentication)
+        public Program(
+            INumberGenerator numberGenerator, 
+            IUserInteractionService userInteractionService, 
+            IHintProvider hintProvider, 
+            ApplicationContext dbContext, 
+            IUserService authentication,
+            IStatisticsService statisticsService)
         {
             _numberGenerator = numberGenerator;
             _userInteractionService = userInteractionService;
             _hintProvider = hintProvider;
             _dbContext = dbContext;
             _authentication = authentication;
+            _statisticsService = statisticsService;
         }
 
         static async Task Main(string[] args)
@@ -27,8 +35,15 @@ namespace GuessTheNumber.Console
             var hintProvider = new HintProvider();
             var dbContext = new ApplicationContext();
             var authentication = new UserService(dbContext);
+            var statisticsService = new StatisticsService(dbContext, userInteractionService);
 
-            var program = new Program(numberGenerator, userInteractionService, hintProvider, dbContext, authentication);
+            var program = new Program(
+                numberGenerator, 
+                userInteractionService, 
+                hintProvider, 
+                dbContext, 
+                authentication,
+                statisticsService);
             await program.RunGameAsync();
         }
 
@@ -53,24 +68,7 @@ namespace GuessTheNumber.Console
             var game = new Game(_userInteractionService, _hintProvider, _numberGenerator);
             var gameResult = game.Run(configuration);
 
-            if (configuration.TrackStatistics)
-            {
-                //add service for new staticstics 
-                //trans to BusinessLogic 
-                var gameResultEntity = new GameResultEntity()
-                {
-                    GameDate = DateTimeOffset.UtcNow,
-                    GameWon = gameResult.GameWon,
-                    RiddledNumber = gameResult.RiddledNumber,
-                    AttemptsTaken = gameResult.AttemptsTaken,
-                    TotalAttempts = gameResult.TotalAttempts,
-                    HintsEnabled = configuration.WantsHints
-                };
-
-                _dbContext.GameResults.Add(gameResultEntity);
-                await _dbContext.SaveChangesAsync();
-                _userInteractionService.OutputMessage($"\nThe result of the game is saved in the database");
-            }
+            await _statisticsService.SaveGameResultAsync(gameResult, user, configuration);
         }
     }
 }
