@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuessTheNumber.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230909135027_AddUserIdToGameResulCodeFirst")]
-    partial class AddUserIdToGameResulCodeFirst
+    [Migration("20230911071527_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,12 +51,7 @@ namespace GuessTheNumber.DataAccess.Migrations
                     b.Property<int>("TotalAttempts")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("GameResults");
                 });
@@ -80,17 +75,6 @@ namespace GuessTheNumber.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("GuessTheNumber.DataAccess.GameResultEntity", b =>
-                {
-                    b.HasOne("GuessTheNumber.DataAccess.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

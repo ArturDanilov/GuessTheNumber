@@ -17,7 +17,7 @@
         public bool HintsEnabled { get; set; }
 
         public int UserId { get; set; }
-        
+
         public UserEntity User { get; set; }
     }
 }

@@ -5,7 +5,7 @@
 namespace GuessTheNumber.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserIdToGameResulCodeFirst : Migration
+    public partial class AssignStatisticsToUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,7 @@ namespace GuessTheNumber.DataAccess.Migrations
                 table: "GameResults",
                 type: "int",
                 nullable: false,
-                defaultValue: 0
-            );
+                defaultValue: 0);
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameResults_UserId",
@@ -31,18 +30,23 @@ namespace GuessTheNumber.DataAccess.Migrations
                 column: "UserId",
                 principalTable: "Users",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade
-            );
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "GameResults");
+            migrationBuilder.DropForeignKey(
+                name: "FK_GameResults_Users_UserId",
+                table: "GameResults");
 
-            migrationBuilder.DropTable(
-                name: "Users");
+            migrationBuilder.DropIndex(
+                name: "IX_GameResults_UserId",
+                table: "GameResults");
+
+            migrationBuilder.DropColumn(
+                name: "UserId",
+                table: "GameResults");
         }
     }
 }

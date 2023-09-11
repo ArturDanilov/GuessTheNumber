@@ -8,22 +8,19 @@ namespace GuessTheNumber.Console
         private readonly INumberGenerator _numberGenerator;
         private readonly IUserInteractionService _userInteractionService;
         private readonly IHintProvider _hintProvider;
-        private readonly ApplicationContext _dbContext;
         private readonly IUserService _authentication;
         private readonly IStatisticsService _statisticsService;
 
         public Program(
             INumberGenerator numberGenerator, 
             IUserInteractionService userInteractionService, 
-            IHintProvider hintProvider, 
-            ApplicationContext dbContext, 
+            IHintProvider hintProvider,
             IUserService authentication,
             IStatisticsService statisticsService)
         {
             _numberGenerator = numberGenerator;
             _userInteractionService = userInteractionService;
             _hintProvider = hintProvider;
-            _dbContext = dbContext;
             _authentication = authentication;
             _statisticsService = statisticsService;
         }
@@ -40,8 +37,7 @@ namespace GuessTheNumber.Console
             var program = new Program(
                 numberGenerator, 
                 userInteractionService, 
-                hintProvider, 
-                dbContext, 
+                hintProvider,
                 authentication,
                 statisticsService);
             await program.RunGameAsync();
