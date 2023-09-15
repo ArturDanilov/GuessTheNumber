@@ -12,6 +12,7 @@ namespace GuessTheNumber.BusinessLogic
             _dbContext = dbContext;
             _userInteractionService = userInteractionService;
         }
+
         public async Task SaveGameResultAsync(GameResult gameResult, UserEntity user, GameConfiguration configuration)
         {
             if (configuration.TrackStatistics)
