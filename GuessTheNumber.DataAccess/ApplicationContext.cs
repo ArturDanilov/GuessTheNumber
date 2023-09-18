@@ -6,7 +6,7 @@ namespace GuessTheNumber.DataAccess
     {
         public DbSet<GameResultEntity> GameResults { get; set; }
 
-        public DbSet<UserEntity> Users { get; set; } //= null!;
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=ADanilov-732\\SQLEXPRESS02;Database=GuessTheNumber;Trusted_Connection=True;TrustServerCertificate=True;");
 
