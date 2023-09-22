@@ -1,3 +1,6 @@
+using GuessTheNumber.BusinessLogic;
+using GuessTheNumber.DataAccess;
+
 namespace GuessTheNumber.API
 {
     public class Program
@@ -9,9 +12,12 @@ namespace GuessTheNumber.API
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<TopStatisticsService>();
+            builder.Services.AddScoped<StatisticsRepository>();
+            builder.Services.AddDbContext<ApplicationContext>();
 
             var app = builder.Build();
 
@@ -23,12 +29,8 @@ namespace GuessTheNumber.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
