@@ -2,11 +2,11 @@
 
 namespace GuessTheNumber.DataAccess
 {
-    public class StatisticsRepository
+    public class StatisticsRepository : IStatisticsRepository
     {
-        private readonly ApplicationContext _context;
+        private readonly IApplicationContext _context;
 
-        public StatisticsRepository(ApplicationContext context)
+        public StatisticsRepository(IApplicationContext context)
         {
             _context = context;
         }

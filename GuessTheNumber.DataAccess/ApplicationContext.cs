@@ -2,7 +2,7 @@
 
 namespace GuessTheNumber.DataAccess
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
         public DbSet<GameResultEntity> GameResults { get; set; }
 

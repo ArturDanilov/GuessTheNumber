@@ -7,9 +7,9 @@ namespace GuessTheNumber.API.Controllers
     [Route("statistics")]
     public class StatisticsController : Controller
     {
-        private readonly TopStatisticsService _topStatisticsService;
+        private readonly ITopStatisticsService _topStatisticsService;
 
-        public StatisticsController(TopStatisticsService topStatisticsService)
+        public StatisticsController(ITopStatisticsService topStatisticsService)
         {
             _topStatisticsService = topStatisticsService;   
         }

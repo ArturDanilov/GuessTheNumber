@@ -15,9 +15,9 @@ namespace GuessTheNumber.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<TopStatisticsService>();
-            builder.Services.AddScoped<StatisticsRepository>();
-            builder.Services.AddDbContext<ApplicationContext>();
+            builder.Services.AddScoped<ITopStatisticsService, TopStatisticsService>();
+            builder.Services.AddScoped<IStatisticsRepository, StatisticsRepository>();
+            builder.Services.AddDbContext<IApplicationContext, ApplicationContext>();
 
             var app = builder.Build();
 

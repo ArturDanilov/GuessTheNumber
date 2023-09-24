@@ -2,11 +2,11 @@
 
 namespace GuessTheNumber.BusinessLogic
 {
-    public class TopStatisticsService
+    public class TopStatisticsService : ITopStatisticsService
     {
-        private readonly StatisticsRepository _statisticsRepository;
+        private readonly IStatisticsRepository _statisticsRepository;
 
-        public TopStatisticsService(StatisticsRepository statisticsRepository)
+        public TopStatisticsService(IStatisticsRepository statisticsRepository)
         {
             _statisticsRepository = statisticsRepository;
         }
