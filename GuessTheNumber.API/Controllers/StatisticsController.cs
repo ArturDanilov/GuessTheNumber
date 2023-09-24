@@ -15,9 +15,9 @@ namespace GuessTheNumber.API.Controllers
         }
 
         [HttpGet("top-5-players")]
-        public IActionResult GetTopFive()
+        public async Task<IActionResult> GetTopFive()
         {
-            var topPlayers = _topStatisticsService.GetTopPlayers();
+            var topPlayers = await _topStatisticsService.GetTopPlayersAsync();
             return Ok(topPlayers);
         }
     }

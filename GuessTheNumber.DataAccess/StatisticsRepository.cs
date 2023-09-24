@@ -1,4 +1,6 @@
-﻿namespace GuessTheNumber.DataAccess
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace GuessTheNumber.DataAccess
 {
     public class StatisticsRepository
     {
@@ -9,9 +11,9 @@
             _context = context;
         }
 
-        public IQueryable<UserStatistics> GetTop5PlayersByGameCount()
+        public async Task<List<UserStatistics>> GetTop5PlayersByGameCountAsync()
         {
-            return _context.GameResults
+            return await _context.GameResults
                          .GroupBy(gr => new
                          {
                              gr.User.Nickname,
@@ -26,7 +28,8 @@
                              TotalGamesCount = g.Count(),
                              Wins = g.Count(gr => gr.GameWon),
                              Losses = g.Count(gr => !gr.GameWon)
-                         });
+                         })
+                         .ToListAsync();
         }
     }
 }

@@ -4,18 +4,16 @@ namespace GuessTheNumber.BusinessLogic
 {
     public class TopStatisticsService
     {
-        //private readonly ApplicationContext _dbContext;
         private readonly StatisticsRepository _statisticsRepository;
 
-        public TopStatisticsService(ApplicationContext dbContext, StatisticsRepository statisticsRepository)
+        public TopStatisticsService(StatisticsRepository statisticsRepository)
         {
-            //_dbContext = dbContext;
             _statisticsRepository = statisticsRepository;
         }
 
-        public IEnumerable<UserStatistics> GetTopPlayers()
+        public async Task<List<UserStatistics>> GetTopPlayersAsync()
         {
-            return _statisticsRepository.GetTop5PlayersByGameCount().ToList();
+            return await _statisticsRepository.GetTop5PlayersByGameCountAsync();
         }
     }
 }
