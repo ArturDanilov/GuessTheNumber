@@ -20,5 +20,19 @@ namespace GuessTheNumber.API.Controllers
             var topPlayers = await _topStatisticsService.GetTopPlayersAsync();
             return Ok(topPlayers);
         }
+
+        [HttpGet("{nickname}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetUserStatistics(string nickname)
+        {
+            DataAccess.UserStatistics userStatistics = await _topStatisticsService.GetPlayerStatisticsByNicknameAsync(nickname);//remove depend
+
+            if (userStatistics == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userStatistics);
+        }
     }
 }

@@ -11,6 +11,11 @@ namespace GuessTheNumber.BusinessLogic
             _statisticsRepository = statisticsRepository;
         }
 
+        public async Task<UserStatistics> GetPlayerStatisticsByNicknameAsync(string nickname)
+        {
+            return await _statisticsRepository.GetPlayerStatisticsByNicknameAsync(nickname);
+        }
+
         public async Task<List<UserStatistics>> GetTopPlayersAsync()
         {
             return await _statisticsRepository.GetTop5PlayersByGameCountAsync();

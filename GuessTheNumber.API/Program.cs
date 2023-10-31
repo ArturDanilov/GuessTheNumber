@@ -17,7 +17,7 @@ namespace GuessTheNumber.API
 
             builder.Services.AddScoped<ITopStatisticsService, TopStatisticsService>();
             builder.Services.AddScoped<IStatisticsRepository, StatisticsRepository>();
-            builder.Services.AddDbContext<IApplicationContext, ApplicationContext>();
+            builder.Services.AddDbContext<ApplicationContext>();
 
             var app = builder.Build();
 

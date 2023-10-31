@@ -2,12 +2,13 @@
 
 namespace GuessTheNumber.DataAccess
 {
-    public class ApplicationContext : DbContext, IApplicationContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<GameResultEntity> GameResults { get; set; }
 
         public DbSet<UserEntity> Users { get; set; }
 
+        //connection string -> user secrets
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=ADanilov-732\\SQLEXPRESS02;Database=GuessTheNumber;Trusted_Connection=True;TrustServerCertificate=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
